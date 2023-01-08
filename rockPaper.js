@@ -27,23 +27,23 @@ function getComputerChoice() {
     }
 }
 function getPlayerChoice() {
-    let inputLoop = false;    
+    let inputLoop = true;    
     playerChoice = "";
    
     playerChoice = prompt("Enter rock, paper, or scissors: ");
     
     playerChoice = playerChoice.toLowerCase();
     console.log("here: ",playerChoice);
-    while (inputLoop = false) {
+    while (inputLoop == true) {
         switch (playerChoice) {
             case "rock":
-                inputLoop = true;
+                inputLoop = false;
                 break;
             case "paper":
-                inputLoop = true;;
+                inputLoop = false;
                 break;
             case "scissors":
-                inputLoop = true;;
+                inputLoop = false;
                 break;
             default:
                 playerChoice = prompt("Enter rock, paper, or scissors: ");
@@ -57,7 +57,7 @@ function getPlayerChoice() {
     
 }
 function playRound(playerChoice, computerChoice) {
-    console.log("Computer chose: " + computerChoice  + "Player chose: " + playerChoice);
+    console.log("Computer chose: " + computerChoice  + " Player chose: " + playerChoice);
     if (playerChoice === "rock" && computerChoice === "scissors") {
         
         console.log("1 win");
@@ -86,12 +86,14 @@ function playRound(playerChoice, computerChoice) {
     }
     else {
         console.log("1 loss");
+        loss = loss + 1;
     }
    
     return;
 }
 
 function decideWinner() {
+    console.log("Wins;Losses;Draws: " + win + " " + loss + " " + draw);
     if (win > 2) {
         console.log("You have won the game: ");
         gameLoop();
@@ -106,6 +108,7 @@ function decideWinner() {
         gameLoop();
     }
     else {
+        console.log("Nothing happened");
         return;
     }
 }
@@ -118,12 +121,15 @@ function gameLoop() {
         console.log("before computer choice");
         getComputerChoice();
         console.log(computerChoice);
+
         console.log("before player choice");
 
+        
         getPlayerChoice();
+        console.log(playerChoice);
         console.log("before play round");
-        playRound(computerChoice, playerChoice);
+        playRound(playerChoice, computerChoice,);
 
     }
-    decidewinner();
+    decideWinner();
 }
