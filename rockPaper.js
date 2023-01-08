@@ -10,19 +10,19 @@ gameLoop();
 function getComputerChoice() {
     
     randomChoice = Math.floor(Math.random() * (3) + 1) ;
-    console.log(randomChoice);
+    
     switch (randomChoice){
         case 1:
             computerChoice = "rock";
-            console.log(computerChoice);
+            
             break;
         case 2:
             computerChoice = "paper";
-            console.log(computerChoice);
+            
             break;
         case 3:
             computerChoice = "scissors";
-            console.log(computerChoice);
+            
             break;
     }
 }
@@ -33,7 +33,7 @@ function getPlayerChoice() {
     playerChoice = prompt("Enter rock, paper, or scissors: ");
     
     playerChoice = playerChoice.toLowerCase();
-    console.log("here: ",playerChoice);
+    
     while (inputLoop == true) {
         switch (playerChoice) {
             case "rock":
@@ -93,7 +93,7 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function decideWinner() {
-    console.log("Wins;Losses;Draws: " + win + " " + loss + " " + draw);
+    console.log("Wins;Losses;Draws: " + win + ";" + loss + ";" + draw);
     if (win > 2) {
         console.log("You have won the game: ");
         gameLoop();
@@ -108,7 +108,7 @@ function decideWinner() {
         gameLoop();
     }
     else {
-        console.log("Nothing happened");
+        console.log("Error");
         return;
     }
 }
@@ -118,16 +118,10 @@ function gameLoop() {
     loss = 0;
     draw = 0;
     for (let i = 0; i < 5; i++) {
-        console.log("before computer choice");
         getComputerChoice();
-        console.log(computerChoice);
-
-        console.log("before player choice");
-
-        
+             
         getPlayerChoice();
-        console.log(playerChoice);
-        console.log("before play round");
+             
         playRound(playerChoice, computerChoice,);
 
     }
