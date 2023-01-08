@@ -108,7 +108,7 @@ function decideWinner() {
         gameLoop();
     }
     else {
-        console.log("Error");
+        console.log("Default draw");
         return;
     }
 }
