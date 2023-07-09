@@ -93,22 +93,26 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function decideWinner() {
-    console.log("Wins;Losses;Draws: " + win + ";" + loss + ";" + draw);
+   // console.log("Wins;Losses;Draws: " + win + ";" + loss + ";" + draw);
+    const winner = document.getElementById('winner');
     if (win > 2) {
-        console.log("You have won the game: ");
+    
+          winner.innerHTML =  'You have won the game: ';
         gameLoop();
     }
     else if (draw > 2) {
-        console.log("The game was a tie: ");
+        //console.log("The game was a tie: ");
+        winner.innerHTML = 'The game was a tie: ';
         gameLoop();
     }
     else if(loss > 2){
-        console.log("You have lost the game: ");
-
+        //console.log("You have lost the game: ");
+        winner.innerHTML = 'You have lost the game: ';
         gameLoop();
     }
     else {
-        console.log("Default draw");
+        //console.log("Default draw");
+        winner.innerHTML = ('Default draw: ');
         return;
     }
 }
@@ -117,6 +121,8 @@ function gameLoop() {
     win = 0;
     loss = 0;
     draw = 0;
+    const container = document.createElement('greeting');
+    container.classList.toggle('greeting');
     for (let i = 0; i < 5; i++) {
         getComputerChoice();
              
