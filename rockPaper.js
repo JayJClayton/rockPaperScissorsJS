@@ -1,5 +1,4 @@
-let computerChoice = "";
-let playerChoice = "";
+
 let win = 0;
 let loss = 0;
 let draw = 0;
@@ -8,46 +7,64 @@ let randomChoice = 0;
 gameLoop();
 
 function getComputerChoice() {
-    
+    const cpuWeapon1 = document.getElementById('cWeapon');
     randomChoice = Math.floor(Math.random() * (3) + 1) ;
-    
+    cpuWeapon1.innerHTML = ("");
     switch (randomChoice){
         case 1:
-            computerChoice = "rock";
+            cpuWeapon1.innerHTML =( "rock");
             
             break;
         case 2:
-            computerChoice = "paper";
+            cpuWeapon1.innerHTML = ("paper");
             
             break;
         case 3:
-            computerChoice = "scissors";
+            cpuWeapon1.innerHTML = ("scissors");
             
             break;
     }
 }
 function getPlayerChoice() {
     let inputLoop = true;    
-    playerChoice = "";
-   
-    playerChoice = prompt("Enter rock, paper, or scissors: ");
+    const pWeapon1 = document.getElementById('pWeapon');
+    const rock1 = document.getElementById('rock');
+    const paper1 = document.getElementById('paper');
+    const scissors1 = document.getElementById('scissors');
+    const buttons = document.querySelectorAll('button');
+    const conChoice = document.getElementById('greeting');
+    rock1.style.color = 'black';
+    paper1.style.color = 'black';
+    scissors1.style.color = 'black';
+    //pWeapon1.innerHTML = prompt("Enter rock, paper, or scissors: ");
     
-    playerChoice = playerChoice.toLowerCase();
+    //pWeapon1.innerHTML = pWeapon1.innerHTML.toLowerCase();
     
+    conChoice.innerHTML = ('Choose Your Weapon');
+
+    //AS of 7/16/2023 this function is stuck in an infinite loop
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            pWeapon1.innerHTML = button.innerHTML;
+            return;
+        })
+    });
     while (inputLoop == true) {
-        switch (playerChoice) {
+        switch (pWeapon1.innerHTML) {
             case "rock":
+                rock1.style.color = 'yellow';
                 inputLoop = false;
                 break;
             case "paper":
+                paper1.style.color = 'yellow';
                 inputLoop = false;
                 break;
             case "scissors":
+                scissors1.style.color = 'yellow';
                 inputLoop = false;
                 break;
             default:
-                playerChoice = prompt("Enter rock, paper, or scissors: ");
-                playerChoice = playerChoice.toLowerCase();
+
                 break;
         }
         
@@ -56,36 +73,38 @@ function getPlayerChoice() {
         return;
     
 }
-function playRound(playerChoice, computerChoice) {
-    console.log("Computer chose: " + computerChoice  + " Player chose: " + playerChoice);
-    if (playerChoice === "rock" && computerChoice === "scissors") {
+function playRound(p, c) {
+   // console.log("Computer chose: " + computerChoice  + " Player chose: " + pWeapon1.innerHTML);
+    if (p === "rock" && c === "scissors") {
         
-        console.log("1 win");
+       // console.log("1 win");
         win = (win + 1);
     }
-    else if (playerChoice=== "rock" && computerChoice === "rock") {
+    else if (p === "rock" && c === "rock") {
+        //console.log("1 draw");
         draw = (draw + 1);
-        console.log("1 draw");
+        
     }
-    else if (playerChoice=== "paper" && computerChoice === "rock") {
-        console.log("1 win");
+    else if (p=== "paper" && c === "rock") {
+        //console.log("1 win");
         win = (win + 1);
 
     }
-    else if (playerChoice=== "paper" && computerChoice === "paper") {
+    else if (p=== "paper" && c === "paper") {
         draw = (draw + 1);
-        console.log("1 draw");
+        //console.log("1 draw");
     }
-    else if (playerChoice=== "scissors" && computerChoice === "paper") {
-        console.log("1 win");
+    else if (p=== "scissors" && c === "paper") {
+        //console.log("1 win");
         win = (win + 1);
+
     }
-    else if (playerChoice=== "scissors" && computerChoice === "scissors") {
+    else if (p=== "scissors" && c === "scissors") {
         draw = (draw + 1);
-        console.log("1 draw");
+        //console.log("1 draw");
     }
     else {
-        console.log("1 loss");
+       // console.log("1 loss");
         loss = loss + 1;
     }
    
@@ -121,14 +140,23 @@ function gameLoop() {
     win = 0;
     loss = 0;
     draw = 0;
-    const container = document.createElement('greeting');
-    container.classList.toggle('greeting');
+    
+    const conWin = document.getElementById('pScore');
+    const conLoss = document.getElementById('cpuScore');
+    const conDraw = document.getElementById('draw');
+ 
+    
+    
+    
+ 
+    
     for (let i = 0; i < 5; i++) {
         getComputerChoice();
-             
+        
+        
         getPlayerChoice();
              
-        playRound(playerChoice, computerChoice,);
+        playRound(pWeapon1.innerHTML, cpuWeapon1.innerHTML);
 
     }
     decideWinner();
